@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <title>News APP</title>
+</head>
+<body>
+<H1 class="text-center"> News App</H1>
+<h2> Search Country</h2>
+<form action="" method="get">
+    <input type="text" name="country">
+    <button type="submit" value="Search">Search</button>
+</form>
+<h2> Search Category</h2>
+<form action="" method="get">
+    <input type="text" name="category">
+    <button type="submit" value="Search">Search</button>
+</form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {% for i in articles %}
+                <div class="card rounded lg m-2" style="width:20rem;">
+                    <img src="{{i.urlToImage}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <p class="card-text">{{i.author}}</p>
+                        <h5 class="card-title">{{i.title}}</h5>
+                        <p class="card-title">{{i.source.name}}</p>
+                        <p class="card-text">{{i.description}}</p>
+                        <hr>
+                        <small> published at: {{i.publishedAt}}</small>
+                        <a href="{{i.url}}" class="btn btn-success m-1">See News</a>
+
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col-md-6">
+            Category
+            <ul class=list-group">
+                <li class="list-group-item"><a class="btn btn-secondary" href="{% url 'home' %}?category=Health">Health</a></li><br>
+                <li class="list-group-item"><a class="btn btn-success" href="{% url 'home' %}?category=technology">Technology</a></li><br>
+                <li class="list-group-item"><a class="btn btn-danger" href="{% url 'home' %}?category=Entertainment">Entertainment</a></li><br>
+                <li class="list-group-item"><a class="btn btn-info" href="{% url 'home' %}?category=sports">Sports</a></li>
+
+            </ul>
+    </div>
+
+</div>
+</body>
+</html>
